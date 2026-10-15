@@ -22,6 +22,8 @@ pipeline {
             post {
                 always {
                     sh 'pwd'
+                    dir('npm-hello')
+                    sh 'pwd'
                     junit testResults: 'npm-hello/reports/junit.xml',
                         allowEmptyResults: false
                 }
