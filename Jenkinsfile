@@ -18,7 +18,9 @@ pipeline {
             }
             post {
                 always {
-                    junit 'npm-hello/reports/junit.xml'
+                    dir('npm-hello') 
+                        junit 'npm-hello/reports/junit.xml'
+                    }   
                 }
             }
         }
@@ -31,5 +33,4 @@ pipeline {
                 }
             }
         }
-    }
 }
