@@ -13,7 +13,9 @@ pipeline {
         stage('Test') {
             steps {
                 dir('npm-hello') {
+                    sh 'pwd'
                     sh 'npm test'
+                    sh 'pwd'
                     sh 'ls -l reports/junit.xml'
                 }
             }
