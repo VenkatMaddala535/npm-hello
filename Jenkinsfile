@@ -6,8 +6,8 @@ pipeline {
             steps {
                     sh 'npm ci'
                 }
-            }
-
+        }
+         
         stage('Test') {
             steps {
                     sh 'npm test'
@@ -16,6 +16,17 @@ pipeline {
                 always {
                     junit 'reports/junit.xml'
 
+                }
+            }
+        }
+
+        stage('SonarQube Analysis'){
+            steps{
+                withSonarQubeEnv('SonarQube'){
+                    script{
+                        def scannerHome = tool 'SonarScanner'
+                        sh "${scannerHome}"/bin/sonar-sacnner/
+                    }
                 }
             }
         }
