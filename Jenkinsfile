@@ -14,13 +14,13 @@ pipeline {
             steps {
                 dir('npm-hello') {
                     sh 'npm test'
+                    sh 'ls -l reports/junit.xml'
                 }
             }
             post {
                 always {
-                    dir('npm-hello') {
-                        junit 'npm-hello/reports/junit.xml'
-                    }   
+                    junit testResults: 'npm-hello/reports/junit.xml',
+                        allowEmptyResults: false
                 }
             }
         }
