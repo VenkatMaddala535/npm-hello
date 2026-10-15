@@ -18,11 +18,13 @@ pipeline {
             }
             post {
                 always {
-                    dir('npm-hello') 
+                    dir('npm-hello') {
                         junit 'npm-hello/reports/junit.xml'
                     }   
                 }
+            }
         }
+
         stage('Build and save artifact') {
             steps {
                 dir('npm-hello') {
