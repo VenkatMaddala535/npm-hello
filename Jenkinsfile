@@ -4,38 +4,30 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                dir('npm-hello') {
                     sh 'npm ci'
                 }
             }
-        }
 
         stage('Test') {
             steps {
-                dir('npm-hello') {
-                    sh 'pwd'
                     sh 'npm test'
-                    sh 'pwd'
-                    sh 'ls -l reports/junit.xml'
-                }
             }
             post {
                 always {
-                    sh 'pwd'
-                    dir('npm-hello')
-                    sh 'pwd'
-                    junit testResults: 'npm-hello/reports/junit.xml',
-                        allowEmptyResults: false
+                    junit 'reports/junit.xml'
+
                 }
             }
         }
 
         stage('Build and save artifact') {
             steps {
-                dir('npm-hello') {
-                    sh 'npm run pack:artifact'
-                    archiveArtifacts artifacts: 'artifacts/*.tgz', fingerprint: true
-                }
+                sh '''
+                rm -rf dist
+                npm run pack:artifact
+                '''
+                archiveArtifacts artifacts: 'dist/*', fingerprint: true
+
             }
         }
     }
