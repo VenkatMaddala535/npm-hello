@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="greeting defaults, whitespace, unicode and length boundary" time="0.012939" classname="test"/>
+	<testcase name="serves the website and its CSS and JavaScript" time="0.056756" classname="test"/>
+	<testcase name="health identifies the stack" time="0.005529" classname="test"/>
+	<testcase name="greeting endpoint handles a missing name and encoded input" time="0.008806" classname="test"/>
+	<testcase name="too-long names produce a client error" time="0.003691" classname="test"/>
+	<testcase name="unknown routes and unsupported methods are rejected" time="0.008879" classname="test"/>
+	<!-- tests 6 -->
+	<!-- suites 0 -->
+	<!-- pass 6 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 396.551372 -->
+</testsuites>

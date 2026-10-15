@@ -1,0 +1,19 @@
+{
+  "name": "jenkins-lab-npm-hello",
+  "version": "1.0.0",
+  "description": "A tiny Node.js website for learning Jenkins, SonarQube and Artifactory.",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": { "jenkins-hello-npm": "dist/server.js" },
+  "files": ["dist/", "README.md"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node dist/server.js",
+    "pretest": "node -e \"require('node:fs').mkdirSync('reports', { recursive: true })\"",
+    "test": "c8 --all --include='src/*.js' --exclude='src/server.js' --reporter=text --reporter=lcov node --test --test-reporter=spec --test-reporter=junit --test-reporter-destination=stdout --test-reporter-destination=reports/junit.xml",
+    "build": "node scripts/build.js",
+    "pack:artifact": "npm run build && npm pack --pack-destination artifacts"
+  },
+  "devDependencies": { "c8": "10.1.3" }
+}

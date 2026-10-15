@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:22-bookworm'
+            label 'docker'
+            args '-e npm_config_cache=/tmp/.npm'
+        }
+    }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                dir('npm-hello') {
+                    sh 'npm ci'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                dir('npm-hello') {
+                    sh 'npm test'
+                }
+            }
+            post {
+                always {
+                    junit 'npm-hello/reports/junit.xml'
+                }
+            }
+        }
+
+        stage('Build and save artifact') {
+            steps {
+                dir('npm-hello') {
+                    sh 'npm run pack:artifact'
+                    archiveArtifacts artifacts: 'artifacts/*.tgz', fingerprint: true
+                }
+            }
+        }
+    }
+}
