@@ -22,9 +22,7 @@ pipeline {
                         junit 'npm-hello/reports/junit.xml'
                     }   
                 }
-            }
         }
-
         stage('Build and save artifact') {
             steps {
                 dir('npm-hello') {
@@ -33,4 +31,5 @@ pipeline {
                 }
             }
         }
+    }
 }
