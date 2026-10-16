@@ -11,7 +11,7 @@ npm run pack:artifact
 npm start
 ```
 
-Open http://localhost:3000. Stop with **Ctrl+C**.
+Open http://localhost:3001. Stop with **Ctrl+C**.
 
 | Task | Command / output |
 | --- | --- |
